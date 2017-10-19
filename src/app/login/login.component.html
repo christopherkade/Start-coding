@@ -1,0 +1,52 @@
+<div class="login">
+  <div class="login-img">
+    <div class="container login-container">
+      <div class="columns">
+        <div class="column is-4"></div>
+
+        <div class="column is-4">
+          <div class="box login-box">
+            <form class="login-form" [formGroup]="loginForm" (submit)="login()">
+
+              <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input is-primary" formControlName="email" placeholder="Email" [(ngModel)]="email" name="email">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                  <span class="icon is-small is-right" *ngIf="validateEmail(email)">
+                    <i class="fa fa-check"></i>
+                  </span>
+                  <span class="icon is-small is-right" *ngIf="!validateEmail(email)">
+                    <i class="fa fa-times"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" formControlName="password" [ngClass]="emptyPassword ? 'is-danger' : 'is-primary'" type="password" placeholder="Password" [(ngModel)]="password" name="password">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field is-grouped is-grouped-centered">
+                <p class="control">
+                  <button class="button is-primary" type="submit" [disabled]="!loginForm.valid">
+                    Login
+                  </button>
+                </p>
+              </div>
+
+            </form>
+
+            <progress class="progress is-small is-info" value={{progress}} max="100">15%</progress>
+          </div>
+        </div>
+        <div class="column is-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

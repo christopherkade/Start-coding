@@ -1,13 +1,13 @@
-<div class="login">
-  <div class="login-img">
-    <div class="container login-container">
+<div class="register">
+  <div class="register-img">
+    <div class="container register-container">
       <div class="columns">
-
         <div class="column is-4"></div>
 
         <div class="column is-4">
-          <div class="box login-box">
-            <form class="login-form" [formGroup]="loginForm" (submit)="login()">
+          <div class="box register-box">
+            <form class="register-form" [formGroup]="registerForm" (submit)="register()">
+
               <div class="field">
                 <div class="control has-icons-left has-icons-right">
                   <input class="input is-primary" formControlName="email" placeholder="Email" [(ngModel)]="email" name="email">
@@ -34,24 +34,24 @@
 
               <div class="field is-grouped is-grouped-centered">
                 <p class="control">
-                  <button class="button is-primary" [disabled]="!loginForm.valid">
-                    Login
+                  <button class="button is-primary" [disabled]="!registerForm.valid">
+                    Register
                   </button>
                 </p>
+
                 <p class="control">
-                  <a class="button is-light" routerLink="/register">
-                    Register
+                  <a class="button is-light" routerLink="/login">
+                    Cancel
                   </a>
                 </p>
               </div>
+
             </form>
 
             <progress class="progress is-small is-info" value={{progress}} max="100">15%</progress>
           </div>
         </div>
-
         <div class="column is-4"></div>
-
       </div>
     </div>
   </div>

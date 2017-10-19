@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {NotAuthGuard} from './guard/not-auth-guard.guard';
 import {HomeComponent} from './home/home.component';
 import {QuizComponent} from './quiz/quiz.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '**',

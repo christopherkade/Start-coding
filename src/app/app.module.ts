@@ -15,6 +15,7 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {NavComponent} from './nav/nav.component';
 import { QuizComponent } from './quiz/quiz.component';
 import {CookieService} from 'angular2-cookie/core';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {CookieService} from 'angular2-cookie/core';
     LoginComponent,
     HomeComponent,
     NavComponent,
-    QuizComponent
+    QuizComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

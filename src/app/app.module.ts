@@ -13,13 +13,16 @@ import {AngularFireModule} from 'angularfire2';
 import {environment} from 'environments/environment';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {NavComponent} from './nav/nav.component';
+import { QuizComponent } from './quiz/quiz.component';
+import {CookieService} from 'angular2-cookie/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import {NavComponent} from './nav/nav.component';
   ],
   providers: [
     NotAuthGuard,
-    AuthService
+    AuthService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../service/auth.service';
 import {FirebaseApp} from 'angularfire2';
 import * as firebase from 'firebase';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private authService: AuthService,
-              firebase: FirebaseApp) { }
+              firebase: FirebaseApp,
+              private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit {
   handleAuthChange() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.authService.isLoggedIn = true;
         this.progress = 100;
 
         setTimeout(() => {
           this.router.navigate(['/home']);
+          this.cookieService.put('logged-in', 'true');
         }, 1000);
       } else {
+        this.cookieService.put('logged-in', 'false');
         console.log('Not logged in');
       }
     });

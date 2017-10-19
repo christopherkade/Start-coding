@@ -1,7 +1,7 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'app/service/auth.service';
-import {FirebaseApp} from "angularfire2";
+import {FirebaseApp} from 'angularfire2';
 
 @Component({
   selector: 'app-nav',
@@ -13,8 +13,7 @@ export class NavComponent implements OnInit {
   infoPannel = false;
   burger = true;
 
-  constructor(private authService: AuthService,
-              private router: Router,
+  constructor(private router: Router,
               private firebase: FirebaseApp) { }
 
   ngOnInit() {
@@ -33,14 +32,13 @@ export class NavComponent implements OnInit {
   // }
 
   logout() {
-    this.authService.isLoggedIn = false;
     this.firebase.auth().signOut();
     this.router.navigate(['/login']);
   }
 
-  infoPannelClick() {
-    this.infoPannel = !this.infoPannel;
-  }
+  // infoPannelClick() {
+  //   this.infoPannel = !this.infoPannel;
+  // }
 
   openBurger() {
     this.burger = !this.burger;

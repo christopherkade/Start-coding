@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {LoginComponent} from './login/login.component';
 import {NotAuthGuard} from './guard/not-auth-guard.guard';
 import {HomeComponent} from './home/home.component';
+import {QuizComponent} from './quiz/quiz.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
     canActivate: [
       NotAuthGuard
     ]
+  },
+  {
+    path: 'quiz',
+    component: QuizComponent
   },
   {
     path: 'login',

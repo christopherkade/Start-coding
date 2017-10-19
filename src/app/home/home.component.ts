@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseApp} from 'angularfire2';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,8 @@ import * as firebase from 'firebase';
 export class HomeComponent implements OnInit {
 
   welcomeTitle = 'Start your coding journey today';
-  welcomeSubtitle = 'All you need to do is complete a short quizz !';
 
-  constructor(firebase: FirebaseApp) { }
+  constructor(firebase: FirebaseApp, private router: Router) { }
 
   ngOnInit() {
     // const titleRef = firebase.database().ref().child('welcome-title');
@@ -24,5 +24,9 @@ export class HomeComponent implements OnInit {
     // subtitleRef.on('value', snap => {
     //   this.welcomeSubtitle = snap.val();
     // });
+  }
+
+  startQuiz() {
+    this.router.navigate(['/quiz']);
   }
 }

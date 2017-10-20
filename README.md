@@ -1,5 +1,7 @@
 # Start Coding
 
+![start-coding](https://user-images.githubusercontent.com/15229355/31835014-ebba9df0-b5c7-11e7-94c3-4cea3e780ec9.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
 ## Development server

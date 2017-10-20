@@ -6,8 +6,8 @@
 
         <div class="column is-4">
           <div class="box register-box">
-            <form class="register-form" [formGroup]="registerForm" (submit)="register()">
 
+            <form class="register-form" [formGroup]="registerForm" (submit)="register()">
               <div class="field">
                 <div class="control has-icons-left has-icons-right">
                   <input class="input is-primary" formControlName="email" placeholder="Email" [(ngModel)]="email" name="email">
@@ -25,7 +25,7 @@
 
               <div class="field">
                 <p class="control has-icons-left">
-                  <input class="input" formControlName="password" type="password" placeholder="Password" [(ngModel)]="password" name="password">
+                  <input class="input is-primary" formControlName="password" type="password" placeholder="Password" [(ngModel)]="password" name="password">
                   <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                   </span>
@@ -45,8 +45,8 @@
                   </a>
                 </p>
               </div>
-
             </form>
+
           </div>
         </div>
         <div class="column is-4"></div>

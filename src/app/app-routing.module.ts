@@ -31,6 +31,11 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: '', // Added to handle Firebase redirection on '/'
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

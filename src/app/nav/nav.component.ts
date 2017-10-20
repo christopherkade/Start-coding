@@ -21,14 +21,18 @@ export class NavComponent {
               private notificationService: NotificationsService) {}
 
   /**
-   * Catches key events, if 'i' is pressed, open / close
-   * user panel
+   * Catches key events
+   * If 'i' is pressed, open / close user panel
+   * If 'Enter' is pressed, save user profile changes
    * @param {KeyboardEvent} e
    */
   @HostListener('document:keydown', ['$event'])
   keypress(e: KeyboardEvent) {
     if (e.key === 'i' && !this.editProfile) {
       this.userPanelClick();
+    }
+    if (e.key === 'Enter' && this.editProfile) {
+      this.editUserProfile();
     }
   }
 

@@ -16,6 +16,7 @@ import {NavComponent} from './nav/nav.component';
 import { QuizComponent } from './quiz/quiz.component';
 import {CookieService} from 'angular2-cookie/core';
 import { RegisterComponent } from './register/register.component';
+import {UserService} from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
   providers: [
     NotAuthGuard,
     AuthService,
-    CookieService
+    CookieService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

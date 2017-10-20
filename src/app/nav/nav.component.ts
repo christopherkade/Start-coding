@@ -1,46 +1,58 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from 'app/service/auth.service';
 import {FirebaseApp} from 'angularfire2';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.sass']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
 
   infoPannel = false;
   burger = true;
+  editProfile = false;
 
   constructor(private router: Router,
-              private firebase: FirebaseApp) { }
+              private firebase: FirebaseApp,
+              public userService: UserService) { }
 
-  ngOnInit() {
+  /**
+   * Catches key events, if 'i' is pressed, open / close
+   * user panel
+   * @param {KeyboardEvent} e
+   */
+  @HostListener('document:keydown', ['$event'])
+  keypress(e: KeyboardEvent) {
+    if (e.key === 'i' && !this.editProfile) {
+      this.infoPannel = !this.infoPannel;
+    }
   }
 
-  // /**
-  //  * Catches key events, if 'i' is pressed, open / close
-  //  * user panel
-  //  * @param {KeyboardEvent} e
-  //  */
-  // @HostListener('document:keydown', ['$event'])
-  // keypress(e: KeyboardEvent) {
-  //   if (e.key === 'i') {
-  //     this.infoPannel = !this.infoPannel;
-  //   }
-  // }
-
+  /**
+   * Catches the log-out button click
+   * Signs-out of firebase & navigates back to /login
+   */
   logout() {
+    this.infoPannel = false;
     this.firebase.auth().signOut();
     this.router.navigate(['/login']);
   }
 
-  // infoPannelClick() {
-  //   this.infoPannel = !this.infoPannel;
-  // }
-
-  openBurger() {
-    this.burger = !this.burger;
+  /**
+   * Called when the user edits his/her profile
+   * Updates it via firebase with the new displayName value
+   */
+  editUserProfile() {
+    this.editProfile = false;
+    this.firebase.auth().currentUser.updateProfile({
+      displayName: this.userService.user.displayName,
+      photoURL: ''
+    }).then(() => {
+      console.log('User profile updated !');
+    }).catch(error => {
+      console.log('Error on user profile update: ' + error);
+    });
   }
 }

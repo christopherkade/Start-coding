@@ -17,7 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    component: QuizComponent
+    component: QuizComponent,
+    canActivate: [
+      NotAuthGuard
+    ]
   },
   {
     path: 'login',

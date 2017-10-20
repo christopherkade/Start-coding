@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseApp} from 'angularfire2';
-import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,9 +9,7 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  welcomeTitle = 'Start your coding journey today';
-
-  constructor(firebase: FirebaseApp, private router: Router) { }
+  constructor(private firebase: FirebaseApp, private router: Router) { }
 
   ngOnInit() {
     // const titleRef = firebase.database().ref().child('welcome-title');

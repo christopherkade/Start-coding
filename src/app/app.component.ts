@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CookieService} from 'angular2-cookie/core';
+import {UserService} from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import {CookieService} from 'angular2-cookie/core';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public cookieService: CookieService) {}
+  constructor(public cookieService: CookieService,
+              private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.handleAuthChange();
+  }
 }

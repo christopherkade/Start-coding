@@ -2,6 +2,7 @@ import {Component, HostListener} from '@angular/core';
 import {Router} from '@angular/router';
 import {FirebaseApp} from 'angularfire2';
 import {UserService} from '../service/user.service';
+import {NotificationsService} from 'angular2-notifications/dist';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,8 @@ export class NavComponent {
 
   constructor(private router: Router,
               private firebase: FirebaseApp,
-              public userService: UserService) { }
+              public userService: UserService,
+              private notificationService: NotificationsService) {}
 
   /**
    * Catches key events, if 'i' is pressed, open / close
@@ -55,7 +57,15 @@ export class NavComponent {
       displayName: this.userService.user.displayName,
       photoURL: ''
     }).then(() => {
-      console.log('User profile updated !');
+      this.notificationService.success('Hurray !', 'Profile updated', {
+        position: ['bottom', 'right'],
+        timeOut: 3000,
+        showProgressBar: false,
+        preventLastDuplicates: true,
+        pauseOnHover: false,
+        clickToClose: true,
+        preventDuplicates: true
+      });
     }).catch(error => {
       console.log('Error on user profile update: ' + error);
     });

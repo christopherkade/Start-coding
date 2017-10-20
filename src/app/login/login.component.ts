@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {FirebaseApp} from 'angularfire2';
 import {CookieService} from 'angular2-cookie/core';
 import {UserService} from '../service/user.service';
+import {NotificationsService} from 'angular2-notifications/dist';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,12 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   email: string;
   password: string;
-  progress = 0;
-  authError = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private firebase: FirebaseApp,
               private cookieService: CookieService,
-              private userService: UserService) { }
+              private notificationService: NotificationsService) { }
 
   ngOnInit(): void {
     // Initialize our login form
@@ -42,15 +41,9 @@ export class LoginComponent implements OnInit {
   handleAuthChange() {
     this.firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.progress = 100;
-        this.authError = false;
-
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-          this.cookieService.put('logged-in', 'true');
-        }, 1000);
+        this.router.navigate(['/home']);
+        this.cookieService.put('logged-in', 'true');
       } else {
-        this.authError = false;
         this.cookieService.put('logged-in', 'false');
       }
     });
@@ -67,19 +60,19 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Sets our progress to 100 to give an impression of loading
-   * then go on to the main page
+   * Sign in our user or fire a notification if there's an error
    */
   login() {
     this.firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(error => {
-      this.authError = true;
-      this.progress = 100;
-
-      setTimeout(() =>{
-        this.progress = 0;
-      }, 1000);
-
-      // TODO: Add error message
+      this.notificationService.error('Oops !', 'Login failed', {
+        position: ['bottom', 'right'],
+        timeOut: 3000,
+        showProgressBar: false,
+        preventLastDuplicates: true,
+        pauseOnHover: false,
+        clickToClose: true,
+        preventDuplicates: true
+      });
     });
   }
 

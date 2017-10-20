@@ -17,6 +17,8 @@ import { QuizComponent } from './quiz/quiz.component';
 import {CookieService} from 'angular2-cookie/core';
 import { RegisterComponent } from './register/register.component';
 import {UserService} from './service/user.service';
+import {SimpleNotificationsModule} from 'angular2-notifications/dist';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,12 @@ import {UserService} from './service/user.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     NotAuthGuard,

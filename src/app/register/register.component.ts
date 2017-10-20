@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
+import {NotificationsService} from 'angular2-notifications/dist';
 
 @Component({
   selector: 'app-register',
@@ -13,11 +14,10 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   email: string;
   password: string;
-  progress = 0;
-  authError = false;
 
   constructor(private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private notificationService: NotificationsService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -37,25 +37,22 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Creates the user's account
+   * Creates the user's account or fires a notification if there is an error
    */
   register() {
-    this.authError = false;
-
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
-      this.progress = 100;
-
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 1000);
+      this.router.navigate(['/login']);
     }).catch(error => {
       if (error.code === 'auth/email-already-in-use') {
-        this.authError = true;
-        this.progress = 100;
-
-        setTimeout(() => {
-          this.progress = 0;
-        }, 1000);
+        this.notificationService.error('Oops !', 'An account with this email address already exists', {
+          position: ['bottom', 'right'],
+          timeOut: 3000,
+          showProgressBar: false,
+          preventLastDuplicates: true,
+          pauseOnHover: false,
+          clickToClose: true,
+          preventDuplicates: true
+        });
       }
     });
   }

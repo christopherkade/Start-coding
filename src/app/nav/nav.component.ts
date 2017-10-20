@@ -26,7 +26,7 @@ export class NavComponent {
   @HostListener('document:keydown', ['$event'])
   keypress(e: KeyboardEvent) {
     if (e.key === 'i' && !this.editProfile) {
-      this.infoPannel = !this.infoPannel;
+      this.userPanelClick();
     }
   }
 
@@ -38,6 +38,11 @@ export class NavComponent {
     this.infoPannel = false;
     this.firebase.auth().signOut();
     this.router.navigate(['/login']);
+  }
+
+  userPanelClick() {
+    this.editProfile = false;
+    this.infoPannel = !this.infoPannel;
   }
 
   /**

@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   email: string;
   password: string;
   progress = 0;
+  authError = false;
 
   constructor(private fb: FormBuilder,
               private router: Router) { }
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.pattern('\\S+@\\S+\\.\\S+')])],
-      'password': ['', Validators.required]
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
 
@@ -39,6 +40,23 @@ export class RegisterComponent implements OnInit {
    * Creates the user's account
    */
   register() {
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+    this.authError = false;
+
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
+      this.progress = 100;
+
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 1000);
+    }).catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        this.authError = true;
+        this.progress = 100;
+
+        setTimeout(() => {
+          this.progress = 0;
+        }, 1000);
+      }
+    });
   }
 }

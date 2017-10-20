@@ -29,24 +29,6 @@ export class LoginComponent implements OnInit {
       'email': ['', Validators.compose([Validators.required, Validators.pattern('\\S+@\\S+\\.\\S+')])],
       'password': ['', Validators.required]
     });
-
-    this.handleAuthChange();
-  }
-
-  /**
-   * Catches when a user logs in/out.
-   * Log-in: redirects to our /home & sets our cookie
-   * Log-out: removes out cookie
-   */
-  handleAuthChange() {
-    this.firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.router.navigate(['/home']);
-        this.cookieService.put('logged-in', 'true');
-      } else {
-        this.cookieService.put('logged-in', 'false');
-      }
-    });
   }
 
   /**

@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import {UserService} from './service/user.service';
 import {SimpleNotificationsModule} from 'angular2-notifications/dist';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HomeComponent,
     NavComponent,
     QuizComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

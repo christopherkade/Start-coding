@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {FirebaseApp} from 'angularfire2';
-import {CookieService} from 'angular2-cookie/core';
 import {UserService} from '../service/user.service';
 import {NotificationsService} from 'angular2-notifications/dist';
 
@@ -20,8 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private firebase: FirebaseApp,
-              private cookieService: CookieService,
-              private notificationService: NotificationsService) { }
+              private notificationService: NotificationsService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     // Initialize our login form
@@ -56,6 +55,17 @@ export class LoginComponent implements OnInit {
         preventDuplicates: true
       });
     });
+  }
+
+  /**
+   * Signs in our user anonymously to Firebase
+   * Sets his auth state to logged-in
+   * Redirects him to /home
+   */
+  anonymousLogin() {
+    this.firebase.auth().signInAnonymously();
+    this.userService.setAuthState(1);
+    this.router.navigate(['/home']);
   }
 
 }

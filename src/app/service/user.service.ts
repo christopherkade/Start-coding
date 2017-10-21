@@ -8,6 +8,7 @@ import {CookieService} from 'angular2-cookie/core';
 export class UserService {
 
   user: User;
+  isAuth: string;
 
   constructor(private firebase: FirebaseApp,
               private router: Router,
@@ -25,6 +26,7 @@ export class UserService {
         this.user = new User();
         this.user.uid = user.uid;
         this.user.email = user.email;
+        this.user.isAnonymous = user.isAnonymous;
         if (user.displayName != null)
           this.user.displayName = user.displayName;
         if (user.photoURL != null)
@@ -36,15 +38,30 @@ export class UserService {
         }
 
         // Set our cookie to logged-in
-        this.cookieService.put('logged-in', 'true');
+        this.setAuthState(1);
       } else {
-
         // User has logged-out, remove data
         this.user = null;
-
         // Set our cookie to logged-out
-        this.cookieService.put('logged-in', 'false');
+        this.setAuthState(-1);
       }
     });
+  }
+
+  /**
+   * Sets our user as logged-in, logged-out or anonymous to handle features that should be available / hidden
+   * @param {number} state
+   */
+  setAuthState(state: number) {
+    switch (state) {
+      case -1:
+        this.cookieService.put('logged-in', 'false');
+        this.isAuth = 'false';
+        break;
+      case 1:
+        this.cookieService.put('logged-in', 'true');
+        this.isAuth = 'true';
+        break;
+    }
   }
 }

@@ -9,10 +9,11 @@ import {UserService} from './service/user.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public cookieService: CookieService,
-              private userService: UserService) {}
+  constructor(private cookieService: CookieService,
+              public userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.isAuth = this.cookieService.get('logged-in')
     this.userService.handleAuthChange();
   }
 }

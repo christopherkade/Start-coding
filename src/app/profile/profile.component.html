@@ -1,0 +1,70 @@
+<div class="card user-card">
+  <div class="logged-in-card" *ngIf="!userService.user.isAnonymous">
+
+    <div class="card-content">
+      <div class="content">
+        Username:
+        <p class="title is-4">
+          <span *ngIf="!editProfile">{{userService.user.displayName}}</span>
+          <input class="input" value="{{userService.user.displayName}}" *ngIf="editProfile" [(ngModel)]="userService.user.displayName">
+        </p>
+        Email:
+        <p class="title is-4">
+          <span>{{userService.user.email}}</span>
+        </p>
+      </div>
+    </div>
+
+    <footer class="card-footer">
+      <a class="card-footer-item user-link" (click)="editProfile = true" *ngIf="!editProfile">
+        <i class="fa fa-edit" style="font-size: 25px"></i>
+      </a>
+      <a class="card-footer-item user-link" (click)="editUserProfile()" *ngIf="editProfile">
+        <i class="fa fa-check" style="font-size: 25px"></i>
+      </a>
+    </footer>
+  </div>
+
+  <div class="anonymous-card" *ngIf="userService.user.isAnonymous">
+    <div class="card-content">
+      <div class="content">
+        <p class="title is-6">
+          Create an account and gain access to:
+        </p>
+
+        <div class="card">
+          <div class="card-content">
+            <p class="subtitle">
+              Persistent documentation
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <p class="subtitle">
+              Personalization
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <p class="subtitle">
+              Features to be added in the future
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="card-footer">
+      <a class="card-footer-item user-link" (click)="createAccount()">
+        <i class="fa fa-plus create-account-icon" style="font-size: 25px"></i>
+        Create account
+      </a>
+    </footer>
+  </div>
+
+</div>

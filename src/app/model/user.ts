@@ -8,4 +8,5 @@ export class User {
   displayName = 'None';
   email;
   photoURL = 'None';
+  isAnonymous;
 }

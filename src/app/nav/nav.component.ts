@@ -22,13 +22,11 @@ export class NavComponent {
    * Signs-out of firebase & navigates back to /login
    */
   logout() {
-    this.userService.setAuthState(-1);
     this.userProfile = false;
     this.firebase.auth().signOut();
-    this.router.navigate(['/login']);
   }
 
-  userPanelClick() {
+  userProfileClick() {
     this.userProfile = !this.userProfile;
   }
 }

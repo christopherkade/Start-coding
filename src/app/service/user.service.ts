@@ -44,6 +44,8 @@ export class UserService {
         this.user = null;
         // Set our cookie to logged-out
         this.setAuthState(-1);
+        // Redirect to /login
+        this.router.navigate(['/login']);
       }
     });
   }

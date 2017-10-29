@@ -1,6 +1,8 @@
 # Start Coding
 
-![start-coding](https://user-images.githubusercontent.com/15229355/31835014-ebba9df0-b5c7-11e7-94c3-4cea3e780ec9.png)
+![start-coding](https://user-images.githubusercontent.com/15229355/32149264-87a5464c-bcf9-11e7-970e-fee5cacb61bc.png)
+![start-coding-2](https://user-images.githubusercontent.com/15229355/32149299-cad8e8ce-bcf9-11e7-8d15-105c4a7aa8a4.png)
+![start-coding-3](https://user-images.githubusercontent.com/15229355/32149263-86cbc76e-bcf9-11e7-8c02-583be4875e18.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 

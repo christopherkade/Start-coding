@@ -1,0 +1,76 @@
+{
+  "documentation" : {
+    "angular-official" : {
+      "URL" : "https://angular.io/guide/quickstart",
+      "description" : "Angular's official quickstart tutorial",
+      "level" : 4,
+      "name" : "Angular",
+      "tech" : [ "angular" ],
+      "type" : "web"
+    },
+    "freecodecamp" : {
+      "URL" : "https://www.freecodecamp.org/",
+      "description" : "Learn to code for free.",
+      "level" : 0,
+      "name" : "freeCodeCamp",
+      "tech" : [ "none" ],
+      "type" : "general"
+    },
+    "gamecodeschool" : {
+      "URL" : "http://gamecodeschool.com/",
+      "description" : "Game coding for beginners",
+      "level" : 0,
+      "name" : "Game Code School",
+      "tech" : [ "java", "c++", "c#", "games" ],
+      "type" : "games"
+    },
+    "html-reference" : {
+      "URL" : "http://htmlreference.io/",
+      "description" : "Learn by example: htmlreference.io is a free guide to HTML. It features all elements and attributes.",
+      "level" : 0,
+      "name" : "HTML Reference",
+      "tech" : [ "html" ],
+      "type" : "general"
+    },
+    "python-official" : {
+      "URL" : "https://docs.python.org/3/tutorial/",
+      "description" : "Python's official tutorial",
+      "level" : 0,
+      "name" : "Python Software Foundation",
+      "tech" : [ "python" ],
+      "type" : "general"
+    },
+    "scotch" : {
+      "URL" : "https://scotch.io",
+      "description" : "Fun and practical web development",
+      "level" : 0,
+      "name" : "Scotch",
+      "tech" : [ "angular", "angularjs", "react", "laravel", "java" ],
+      "type" : "web"
+    },
+    "stackoverflow" : {
+      "URL" : "https://stackoverflow.com/",
+      "description" : "Where developers learn, share and build careers",
+      "level" : 0,
+      "name" : "Stack Overflow",
+      "tech" : [ "none" ],
+      "type" : "Q&A"
+    },
+    "vogella" : {
+      "URL" : "http://www.vogella.com/",
+      "description" : "Tutorials and training sessions about Eclipse RCP, Android, Java, Git and other Open Source technologies",
+      "level" : 0,
+      "name" : "Vogella",
+      "tech" : [ "android", "java", "spring" ],
+      "type" : "general"
+    },
+    "w3schools" : {
+      "URL" : "https://www.w3schools.com/",
+      "description" : "THE WORLD'S LARGEST WEB DEVELOPER SITE",
+      "level" : 0,
+      "name" : "w3schools",
+      "tech" : [ "html", "css", "javascript", "nodejs", "php", "asp", "sql", "xml" ],
+      "type" : "web"
+    }
+  }
+}

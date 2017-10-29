@@ -14,6 +14,7 @@ export class QuizComponent implements OnInit {
   constructor(private router: Router, private quizService: QuizService) { }
 
   ngOnInit() {
+    this.quizService.documentation = [];
     this.quizService.initQuestions();
   }
 

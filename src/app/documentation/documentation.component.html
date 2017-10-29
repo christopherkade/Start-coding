@@ -15,7 +15,7 @@
 
   <!-- Documentation table -->
   <div class="container doc-container" *ngIf="quizService.documentation.length > 0">
-    <h1 class="title">We have found {{quizService.documentation.length}} websites that suit your profile</h1>
+    <h1 class="title">We have found {{quizService.documentation.length}} website<span *ngIf="quizService.documentation.length > 1">s</span> that suit<span *ngIf="quizService.documentation.length == 1">s</span>  your profile</h1>
 
     <div class="card doc-card" *ngFor="let doc of quizService.documentation">
       <header class="card-header">

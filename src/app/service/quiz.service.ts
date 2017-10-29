@@ -9,7 +9,8 @@ export class QuizService {
 
   keywords = ['web', 'mobile', 'backend', 'frontend', 'c', 'java', 'c++',
     'python', 'javascript', 'nodejs', 'spring', 'cobol', 'react', 'fortran',
-    'software', 'operating systems', 'hardware', 'assembly', 'c#', 'html'];
+    'software', 'operating systems', 'hardware', 'assembly', 'c#', 'html',
+    'games', 'angular', 'css', 'asp', 'sql', 'xml', 'php'];
   previousQuestions: Question[];
   currentQuestion: Question;
   answers: Answer[];
@@ -150,6 +151,7 @@ export class QuizService {
   }
 
   // TODO: Drastically improve performance, O(N^3) is not acceptable
+  // TODO: Doc should rely on level
   processAnswers() {
     let documentation = null;
 

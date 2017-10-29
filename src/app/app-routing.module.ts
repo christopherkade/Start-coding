@@ -1,11 +1,11 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
-import {LoginComponent} from './login/login.component';
-import {NotAuthGuard} from './guard/not-auth-guard.guard';
-import {HomeComponent} from './home/home.component';
-import {QuizComponent} from './quiz/quiz.component';
-import {RegisterComponent} from './register/register.component';
-import {DocumentationComponent} from './documentation/documentation.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { NotAuthGuard } from './guard/not-auth-guard.guard';
+import { HomeComponent } from './home/home.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { RegisterComponent } from './register/register.component';
+import { DocumentationComponent } from './documentation/documentation.component';
 
 const routes: Routes = [
   {
@@ -50,8 +50,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

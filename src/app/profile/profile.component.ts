@@ -1,8 +1,8 @@
-import {Component, HostListener} from '@angular/core';
-import {UserService} from '../service/user.service';
-import {FirebaseApp} from 'angularfire2';
-import {NotificationsService} from 'angular2-notifications/dist';
-import {Router} from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { UserService } from '../service/user.service';
+import { FirebaseApp } from 'angularfire2';
+import { NotificationsService } from 'angular2-notifications/dist';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +14,9 @@ export class ProfileComponent {
   editProfile = false;
 
   constructor(public userService: UserService,
-              private firebase: FirebaseApp,
-              private notificationService: NotificationsService,
-              private router: Router) {}
+    private firebase: FirebaseApp,
+    private notificationService: NotificationsService,
+    private router: Router) { }
 
   /**
    * Saves user profile when 'enter' is pressed

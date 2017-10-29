@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FirebaseApp} from 'angularfire2';
-import {User} from '../model/user';
-import {Router} from '@angular/router';
-import {CookieService} from 'angular2-cookie/core';
+import { FirebaseApp } from 'angularfire2';
+import { User } from '../model/user';
+import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/core';
 
 @Injectable()
 export class UserService {
@@ -11,8 +11,8 @@ export class UserService {
   isAuth: string;
 
   constructor(private firebase: FirebaseApp,
-              private router: Router,
-              private cookieService: CookieService) { }
+    private router: Router,
+    private cookieService: CookieService) { }
 
   /**
    * Catches auth state changes

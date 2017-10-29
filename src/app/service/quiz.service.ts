@@ -5,9 +5,13 @@ import { Question } from '../model/question';
 @Injectable()
 export class QuizService {
 
+  keywords = ['web', 'mobile', 'backend', 'frontend', 'C', 'java', 'C++',
+    'python', 'javascript', 'nodeJS', 'spring', 'cobol', 'react', 'fortran',
+    'software', 'operating systems', 'hardware', 'assembly'];
   previousQuestions: Question[];
   currentQuestion: Question;
   answers: Answer[];
+  answerKeywords;
 
   constructor() {
     this.initQuestions();
@@ -88,21 +92,25 @@ export class QuizService {
     this.answers = [];
     // Set / Reset the previous questions
     this.previousQuestions = [];
+    // Set / Reset our keyword list
+    this.answerKeywords = [];
   }
 
   addAnswer(answerIndex: number) {
+    let answer: Answer = this.currentQuestion.answers[answerIndex];
     // Add answer to our array
-    this.answers.push(this.currentQuestion.answers[answerIndex]);
+    this.answers.push(answer);
     // Add question to previous questions array
     this.previousQuestions.push(this.currentQuestion);
+    // Check if our answer has a keyword
+    this.checkKeywords(answer);
 
     // Check if it's the last question
     if (!this.isLastQuestion(answerIndex)) {
       // It is not, set the new one
       this.currentQuestion = this.currentQuestion.answers[answerIndex].nextQuestion;
     } else {
-      this.displayAnswers();
-
+      this.processAnswers();
       // It is, process the answers & reset the quiz
       this.initQuestions();
     }
@@ -128,10 +136,21 @@ export class QuizService {
     }
   }
 
-  displayAnswers() {
-    console.log('---');
-    for (let answer of this.answers) {
-      console.log(answer.value);
-    }
+  // O(N) complexity
+  checkKeywords(answer: Answer) {
+    this.keywords.map((keyword) => {
+      if (answer.value.toLowerCase().includes(keyword)) {
+        this.answerKeywords.push(keyword);
+      }
+    });
+  }
+
+  processAnswers() {
+    console.log('--- Processing answers ---')
+    console.log('Total answers: ' + this.answers.length);
+    console.log('Total keywords found: ' + this.answerKeywords.length + ', values:');
+    this.answerKeywords.map(keyword => {
+      console.log(keyword);
+    });
   }
 }

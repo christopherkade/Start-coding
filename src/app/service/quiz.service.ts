@@ -65,8 +65,8 @@ export class QuizService {
     const question3o4 = new Question('Now that\'s the spirit ! What would you like to build?', [
       new Answer('Websites'),
       new Answer('Mobile apps'),
-      new Answer('Operating Systems (e.g: Windows 10 or Linux)'),
-      new Answer('Software in general')
+      new Answer('Operating Systems'),
+      new Answer('Software')
     ]);
     const question3o5 = new Question('There\'s a big difference between building and playing video games ! ' +
       'Would you be interested in coding games?', [

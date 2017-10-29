@@ -3,14 +3,10 @@
   <h1 class="title">{{quizService.currentQuestion.value}}</h1>
   <div>Question n° {{quizService.answers.length + 1}}</div>
 
-  <div class="columns answer-columns is-fluid">
-    <div class="column answer-column" *ngFor="let answer of quizService.currentQuestion.answers; let i = index">
-      <div class="card answer-card" (click)="answerChosen(i)">
-        <div class="card-content">
-          <div class="content answer-text">
-            {{answer.value}}
-          </div>
-        </div>
+  <div class="card answer-card" *ngFor="let answer of quizService.currentQuestion.answers; let i = index" (click)="answerChosen(i)">
+    <div class="card-content">
+      <div class="content answer-text">
+        {{answer.value}}
       </div>
     </div>
   </div>

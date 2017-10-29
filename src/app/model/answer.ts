@@ -2,7 +2,7 @@ import { Question } from './question';
 
 export class Answer {
   value: string;
-  nextQuestion: Question;  
+  nextQuestion: Question;
 
   constructor(value: string, nextQuestion?: Question) {
     this.value = value;

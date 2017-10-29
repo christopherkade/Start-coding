@@ -1,33 +1,22 @@
-<div class="hero quiz-hero">
+<div class="container quiz-container is-fluid">
 
-  <div class="box question-box">
-    <div class="hero-body">
-      <div class="container question-container is-fluid">
-        <h1 class="title">{{quizService.currentQuestion.value}}</h1>
-        <span>Questions answered: {{quizService.answers.length}}</span>
-      </div>
-    </div>
+  <h1 class="title">{{quizService.currentQuestion.value}}</h1>
+  <div>Question n° {{quizService.answers.length + 1}}</div>
 
-    <div class="columns answer-columns">
-      <div class="column" *ngFor="let answer of quizService.currentQuestion.answers; let i = index">
-        <div class="answer">
-          <div class="card answer-card" (click)="answerChosen(i)">
-            <div class="card-content">
-              <div class="content">
-                {{answer.value}}
-              </div>
-            </div>
+  <div class="columns answer-columns is-fluid">
+    <div class="column answer-column" *ngFor="let answer of quizService.currentQuestion.answers; let i = index">
+      <div class="card answer-card" (click)="answerChosen(i)">
+        <div class="card-content">
+          <div class="content answer-text">
+            {{answer.value}}
           </div>
         </div>
       </div>
     </div>
-
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item" (click)="quizService.previousQuestion()" *ngIf="quizService.answers.length != 0">
-          <span class="icon is-small"><i class="fa fa-reply" style="font-size: 25px; color: black"></i></span>
-        </a>
-      </div>
-    </nav>
   </div>
+
+  <a class="card-footer-item" (click)="quizService.previousQuestion()" *ngIf="quizService.answers.length != 0">
+    <span class="icon is-small"><i class="fa fa-undo" style="font-size: 25px; color: black"></i></span>
+  </a>
+
 </div>

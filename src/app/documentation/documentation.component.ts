@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {QuizService} from '../service/quiz.service';
 
 @Component({
   selector: 'app-documentation',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./documentation.component.sass']
 })
 export class DocumentationComponent {
-  constructor() { }
+  constructor(public quizService: QuizService) {}
 }

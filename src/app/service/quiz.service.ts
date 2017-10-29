@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Answer } from '../model/answer';
 import { Question } from '../model/question';
+import { FirebaseApp } from 'angularfire2';
+import {Documentation} from '../model/documentation';
 
 @Injectable()
 export class QuizService {
 
-  keywords = ['web', 'mobile', 'backend', 'frontend', 'C', 'java', 'C++',
-    'python', 'javascript', 'nodeJS', 'spring', 'cobol', 'react', 'fortran',
-    'software', 'operating systems', 'hardware', 'assembly'];
+  keywords = ['web', 'mobile', 'backend', 'frontend', 'c', 'java', 'c++',
+    'python', 'javascript', 'nodejs', 'spring', 'cobol', 'react', 'fortran',
+    'software', 'operating systems', 'hardware', 'assembly', 'c#', 'html'];
   previousQuestions: Question[];
   currentQuestion: Question;
   answers: Answer[];
   answerKeywords;
+  documentation: Documentation[] = [];
 
-  constructor() {
+  // Database references
+  dbRef = this.firebase.database().ref().child('documentation');
+
+  constructor(private firebase: FirebaseApp) {
     this.initQuestions();
   }
 
+  // TODO: Finish quiz
   initQuestions() {
     // QUESTION 4, 4.1, 4.2 (Web)
     const question4 = new Question('Great, using what tech primarily?', [
@@ -63,9 +70,9 @@ export class QuizService {
     ]);
     const question3o5 = new Question('There\'s a big difference between building and playing video games ! ' +
       'Would you be interested in coding games?', [
-        new Answer('Yes'),
-        new Answer('No, I take it back'),
-      ]);
+      new Answer('Yes'),
+      new Answer('No, I take it back'),
+    ]);
 
     // QUESTION 2, 2.1
     const question2 = new Question('In what technical field?', [
@@ -97,7 +104,7 @@ export class QuizService {
   }
 
   addAnswer(answerIndex: number) {
-    let answer: Answer = this.currentQuestion.answers[answerIndex];
+    const answer: Answer = this.currentQuestion.answers[answerIndex];
     // Add answer to our array
     this.answers.push(answer);
     // Add question to previous questions array
@@ -110,18 +117,14 @@ export class QuizService {
       // It is not, set the new one
       this.currentQuestion = this.currentQuestion.answers[answerIndex].nextQuestion;
     } else {
+      // It is, process the answers
       this.processAnswers();
-      // It is, process the answers & reset the quiz
-      this.initQuestions();
     }
   }
 
   isLastQuestion(answerIndex): boolean {
-    // Check if it's the last question
-    if (this.currentQuestion.answers[answerIndex].nextQuestion == null) {
-      return true;
-    }
-    return false;
+    // Return true if it is the last question, false otherwise
+    return this.currentQuestion.answers[answerIndex].nextQuestion == null;
   }
 
   previousQuestion() {
@@ -136,21 +139,50 @@ export class QuizService {
     }
   }
 
-  // O(N) complexity
   checkKeywords(answer: Answer) {
+    // Go through our keywords and check if we have a match with the answer
     this.keywords.map((keyword) => {
       if (answer.value.toLowerCase().includes(keyword)) {
+        // We do, add it to our array
         this.answerKeywords.push(keyword);
       }
     });
   }
 
+  // TODO: Drastically improve performance, O(N^3) is not acceptable
   processAnswers() {
-    console.log('--- Processing answers ---')
-    console.log('Total answers: ' + this.answers.length);
-    console.log('Total keywords found: ' + this.answerKeywords.length + ', values:');
-    this.answerKeywords.map(keyword => {
-      console.log(keyword);
+    let documentation = null;
+
+    // Get documentation from Firebase DB
+    this.dbRef.on('value', snap => {
+      documentation = snap.val();
+
+      // Loop through it
+      for (const key in documentation) {
+        if (documentation.hasOwnProperty(key)) {
+          const val = documentation[key];
+
+          // Loop through our documentation's tech keywords
+          for (const tkey in val.tech) {
+            if (val.tech.hasOwnProperty(tkey)) {
+
+              // Check if a keyword matches
+              this.answerKeywords.map(keyword => {
+
+                if (keyword.trim() === val.tech[tkey].trim()) {
+                  // It does, save the documentation
+                  this.documentation.push(new Documentation(documentation[key].URL,
+                    documentation[key].level, documentation[key].name,
+                    val.tech[tkey], documentation[key].type, documentation[key].description));
+                }
+              });
+            }
+          }
+        }
+      }
+
+      // Reset our quiz
+      this.initQuestions();
     });
   }
 }

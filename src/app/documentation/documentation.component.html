@@ -1,12 +1,39 @@
-<div class="hero documentation">
-  <div class="hero-body documentation-body">
-    <div class="container">
-      <h1 class="title">
-        Documentation
-      </h1>
-      <h2 class="subtitle">
-        Work in progress, come back later !
-      </h2>
+<div class="doc">
+  <!-- Show when we lack documentation to show -->
+  <div class="hero">
+    <div class="hero-body doc-body">
+      <div class="container" *ngIf="quizService.documentation.length == 0">
+        <h1 class="title">
+          Oh no !
+        </h1>
+        <h2 class="subtitle">
+          It seems like we have not been able to find documentation for your profile, come back later, <a routerLink="/quiz">try again</a> or help us by <a>submitting new resources</a> (SOON).
+        </h2>
+      </div>
     </div>
+  </div>
+
+  <!-- Documentation table -->
+  <div class="container doc-container" *ngIf="quizService.documentation.length > 0">
+    <h1 class="title">We have found {{quizService.documentation.length}} websites that suit your profile</h1>
+
+    <table class="table is-bordered is-striped is-narrow doc-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>URL</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doc of quizService.documentation">
+        <th>{{doc.name}}</th>
+        <th>{{doc.description}}</th>
+        <th><a target="_blank" href="{{doc.URL}}">{{doc.URL}}</a></th>
+        <th>{{doc.type}}</th>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

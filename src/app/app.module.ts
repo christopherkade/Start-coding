@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import {NotAuthGuard} from './guard/not-auth-guard.guard';
-import {AngularFireModule} from 'angularfire2';
-import {environment} from 'environments/environment';
-import {AngularFirestoreModule} from 'angularfire2/firestore';
-import {NavComponent} from './nav/nav.component';
+import { NotAuthGuard } from './guard/not-auth-guard.guard';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { NavComponent } from './nav/nav.component';
 import { QuizComponent } from './quiz/quiz.component';
-import {CookieService} from 'angular2-cookie/core';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import { RegisterComponent } from './register/register.component';
-import {UserService} from './service/user.service';
-import {SimpleNotificationsModule} from 'angular2-notifications/dist';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { UserService } from './service/user.service';
+import { SimpleNotificationsModule } from 'angular2-notifications/dist';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
+import { DocumentationComponent } from './documentation/documentation.component';
+import { QuizService } from './service/quiz.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ProfileComponent } from './profile/profile.component';
     NavComponent,
     QuizComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    DocumentationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { ProfileComponent } from './profile/profile.component';
   providers: [
     NotAuthGuard,
     CookieService,
-    UserService
+    UserService,
+    QuizService
   ],
   bootstrap: [AppComponent]
 })

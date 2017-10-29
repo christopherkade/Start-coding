@@ -55,6 +55,5 @@ export class ProfileComponent {
 
   createAccount() {
     this.firebase.auth().signOut();
-    this.router.navigate(['/register']);
   }
 }

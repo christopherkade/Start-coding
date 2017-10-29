@@ -5,6 +5,7 @@ import {NotAuthGuard} from './guard/not-auth-guard.guard';
 import {HomeComponent} from './home/home.component';
 import {QuizComponent} from './quiz/quiz.component';
 import {RegisterComponent} from './register/register.component';
+import {DocumentationComponent} from './documentation/documentation.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,13 @@ const routes: Routes = [
   {
     path: 'quiz',
     component: QuizComponent,
+    canActivate: [
+      NotAuthGuard
+    ]
+  },
+  {
+    path: 'documentation',
+    component: DocumentationComponent,
     canActivate: [
       NotAuthGuard
     ]

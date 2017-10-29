@@ -32,6 +32,8 @@ export class UserService {
         if (user.photoURL != null)
           this.user.photoURL = user.photoURL;
 
+        this.setAuthState(1);
+
         // If on the login or register screen, redirect to /home
         if (this.router.url === '/login' || this.router.url === '/register') {
           this.router.navigate(['/home']);

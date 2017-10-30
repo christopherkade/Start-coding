@@ -61,7 +61,7 @@ export class QuizService {
     ]);
     const question3o3 = new Question('What specifically are you interested in about computers?', [
       new Answer('The way the hardware (components inside your computer) work'),
-      new Answer('The awesome tools I use everyday (for example, Microsoft\'s Excel or Facebook')
+      new Answer('The awesome tools I use everyday (for example, Microsoft\'s Excel or Facebook)')
     ]);
     const question3o4 = new Question('Now that\'s the spirit ! What would you like to build?', [
       new Answer('Websites'),

@@ -9,8 +9,7 @@ Please, feel free to help me fill up the resource database by following these si
 
     ```json
     {
-      "documentation": {
-        ...
+      "documentation": {        
         "resource-name": {
           "URL": "resource-url.com",
           "description": "Concise and relevant description",

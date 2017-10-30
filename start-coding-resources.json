@@ -30,7 +30,7 @@
       "level" : 0,
       "name" : "HTML Reference",
       "tech" : [ "html" ],
-      "type" : "general"
+      "type" : "web"
     },
     "python-official" : {
       "URL" : "https://docs.python.org/3/tutorial/",
@@ -70,6 +70,30 @@
       "level" : 0,
       "name" : "w3schools",
       "tech" : [ "html", "css", "javascript", "nodejs", "php", "asp", "sql", "xml" ],
+      "type" : "web"
+    },
+    "css-reference" : {
+      "URL" : "http://cssreference.io/",
+      "description" : "Learn by example: cssreference.io is a free visual guide to CSS",
+      "level" : 0,
+      "name" : "CSS Reference",
+      "tech" : [ "css" ],
+      "type" : "web"
+    },
+    "postgressql-tutorial" : {
+      "URL" : "http://www.postgresqltutorial.com/",
+      "description" : "This PostgreSQL tutorial helps you understand PostgreSQL quickly",
+      "level" : 0,
+      "name" : "PostgresSQL Tutorial",
+      "tech" : [ "postgressql" ],
+      "type" : "web"
+    },
+    "joshmorony" : {
+      "URL" : "https://www.joshmorony.com/",
+      "description" : "Build mobile apps with the tech that runs EVERYWHERE",
+      "level" : 0,
+      "name" : "Josh Morony",
+      "tech" : [ "ionic", "html", "games" ],
       "type" : "web"
     }
   }

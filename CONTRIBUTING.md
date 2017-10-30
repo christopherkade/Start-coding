@@ -28,4 +28,6 @@ Please, feel free to help me fill up the resource database by following these si
     - `type` is the type of content accessible in this resource (`web`, `q&a`, `general` etc.).
 
 
-4)  Finally, submit a pull request to the repository
+4) Commit & push your addition
+
+5) Finally, submit a pull request to the repository

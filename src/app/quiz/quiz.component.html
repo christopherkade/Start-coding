@@ -1,6 +1,6 @@
 <div class="container quiz-container is-fluid">
 
-  <h1 class="title">{{quizService.currentQuestion.value}}</h1>
+  <h1 class="title question-text">{{quizService.currentQuestion.value}}</h1>
   <div>Question n° {{quizService.answers.length + 1}}</div>
 
   <div class="card answer-card" *ngFor="let answer of quizService.currentQuestion.answers; let i = index" (click)="answerChosen(i)">

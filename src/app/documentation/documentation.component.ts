@@ -7,5 +7,6 @@ import {QuizService} from '../service/quiz.service';
   styleUrls: ['./documentation.component.sass']
 })
 export class DocumentationComponent {
+  // TODO: Solve doc duplication bug
   constructor(public quizService: QuizService) {}
 }

@@ -95,6 +95,14 @@
       "name" : "Josh Morony",
       "tech" : [ "ionic", "html", "games" ],
       "type" : "web"
+    },
+    "thejackalofjavascript" : {
+      "URL" : "http://thejackalofjavascript.com/",
+      "description" : "Javascript 101",
+      "level" : 0,
+      "name" : "The Jackal of Javascript",
+      "tech" : [ "javascript", "ionic", "angular", "firebase", "angularjs", "html", "android", "nodejs" ],
+      "type" : "web"
     }
   }
 }

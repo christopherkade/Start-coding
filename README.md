@@ -10,4 +10,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Contributing
 
-I'd love to get contributions for you ! Feel free to take a look at these simple [guidelines](https://github.com/christopherkade/start-coding/blob/master/CONTRIBUTING.md).
+I'd love to get contributions from you ! Feel free to take a look at these simple [guidelines](https://github.com/christopherkade/start-coding/blob/master/CONTRIBUTING.md).

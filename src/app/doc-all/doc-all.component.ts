@@ -11,12 +11,12 @@ export class DocAllComponent implements OnInit {
   constructor(private docService: DocService) { }
 
   selectedType = 'Type';
+  selectedTech = 'Tech';
   typeFilter = false;
+  techFilter = false;
 
   ngOnInit() {
-    if (this.docService.documentation.length == 0) {
-      this.docService.getDoc();
-      this.docService.getDocTypes();
-    }
+    this.docService.getDoc();
+    this.docService.getDocTypes();
   }
 }

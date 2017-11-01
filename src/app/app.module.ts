@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
 import { DocComponent } from './doc/doc.component';
 import { QuizService } from './service/quiz.service';
+import { DocService } from './service/doc.service';
 import { DocAllComponent } from './doc-all/doc-all.component';
 import { LoadingComponent } from './loading/loading.component';
 
@@ -52,7 +53,8 @@ import { LoadingComponent } from './loading/loading.component';
     NotAuthGuard,
     CookieService,
     UserService,
-    QuizService
+    QuizService,
+    DocService
   ],
   bootstrap: [AppComponent]
 })

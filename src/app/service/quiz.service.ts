@@ -4,6 +4,7 @@ import { Keywords } from '../model/keyword';
 import { Question } from '../model/question';
 import { FirebaseApp } from 'angularfire2';
 import { Documentation } from '../model/documentation';
+import { DocService } from './doc.service';
 
 @Injectable()
 export class QuizService {
@@ -13,13 +14,13 @@ export class QuizService {
   answers: Answer[];
   answerKeywords: Keywords[];
   documentation: Documentation[] = [];
-
   isLoading = false;
 
   // Database references
   dbRef = this.firebase.database().ref().child('documentation');
 
-  constructor(private firebase: FirebaseApp) {
+  constructor(private firebase: FirebaseApp,
+    private docService: DocService) {
     this.initQuestions();
   }
 
@@ -99,6 +100,8 @@ export class QuizService {
     this.previousQuestions = [];
     // Set / Reset our keyword list
     this.answerKeywords = [];
+    // Reset our documentation
+    this.docService.resetDoc();
   }
 
   addAnswer(answerIndex: number) {
@@ -126,13 +129,13 @@ export class QuizService {
     }
   }
 
+  // Return true if it is the last question, false otherwise
   isLastQuestion(answerIndex): boolean {
-    // Return true if it is the last question, false otherwise
     return this.currentQuestion.answers[answerIndex].nextQuestion == null;
   }
 
+  // Check if there is a previous question
   previousQuestion() {
-    // Check if there is a previous question
     if (this.previousQuestions.length !== 0) {
       // There is, set the current question to the previous one
       this.currentQuestion = this.previousQuestions[this.previousQuestions.length - 1];
@@ -143,44 +146,8 @@ export class QuizService {
     }
   }
 
-  // TODO: Drastically improve performance, O(N^3) is not acceptable
-  // TODO: Doc should rely on level
+  // Call our answer processing method in our documentation service
   processAnswers() {
-    let documentation = null;
-
-    this.isLoading = true;
-
-    // Get documentation from Firebase DB
-    this.dbRef.on('value', snap => {
-      documentation = snap.val();
-
-      // Loop through it
-      for (const key in documentation) {
-        if (documentation.hasOwnProperty(key)) {
-          const val = documentation[key];
-
-          // Loop through our documentation's tech keywords
-          for (const tkey in val.tech) {
-            if (val.tech.hasOwnProperty(tkey)) {
-
-              // Check if a keyword matches
-              this.answerKeywords.map(keyword => {
-
-                if (keyword.trim() === val.tech[tkey].trim()) {
-                  // It does, save the documentation
-                  this.documentation.push(new Documentation(documentation[key].URL,
-                    documentation[key].level, documentation[key].name,
-                    val.tech[tkey], documentation[key].type, documentation[key].description));
-                }
-              });
-            }
-          }
-        }
-      }
-      this.isLoading = false;
-
-      // Reset our quiz
-      this.initQuestions();
-    });
+    this.docService.getDocByKeywords(this.answerKeywords);
   }
 }

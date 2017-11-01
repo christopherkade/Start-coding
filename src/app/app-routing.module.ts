@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { RegisterComponent } from './register/register.component';
 import { DocComponent } from './doc/doc.component';
+import { DocAllComponent } from './doc-all/doc-all.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,13 @@ const routes: Routes = [
   {
     path: 'doc',
     component: DocComponent,
+    canActivate: [
+      NotAuthGuard
+    ]
+  },
+  {
+    path: 'doc-all',
+    component: DocAllComponent,
     canActivate: [
       NotAuthGuard
     ]

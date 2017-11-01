@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QuizService } from '../service/quiz.service';
+import { DocService } from '../service/doc.service';
 
 @Component({
   selector: 'app-doc',
@@ -7,5 +7,5 @@ import { QuizService } from '../service/quiz.service';
   styleUrls: ['./doc.component.sass']
 })
 export class DocComponent {
-  constructor(private quizService: QuizService) { }
+  constructor(private docService: DocService) { }
 }

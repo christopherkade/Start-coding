@@ -11,7 +11,7 @@ import { QuizService } from '../service/quiz.service';
 })
 export class QuizComponent implements OnInit {
 
-  constructor(private router: Router, private quizService: QuizService) { }
+  constructor(private router: Router, private quizService: QuizService) {}
 
   ngOnInit() {
     this.quizService.documentation = [];

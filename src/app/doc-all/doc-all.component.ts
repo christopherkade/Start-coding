@@ -10,10 +10,11 @@ import { DocService } from '../service/doc.service';
 export class DocAllComponent implements OnInit {
   constructor(private docService: DocService) { }
 
-  selectedType = 'Type';
-  selectedTech = 'Tech';
   typeFilter = false;
-  techFilter = false;
+  selectedType = 'Type';
+
+  // techFilter = false;
+  // selectedTech = 'Tech';
 
   ngOnInit() {
     this.docService.getDoc();

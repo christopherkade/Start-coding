@@ -13,7 +13,7 @@ export class DocService {
   dbRefType = this.firebase.database().ref().child('documentation-type');
   // List of doc
   documentation: Documentation[] = [];
-  documentationType: string[] = [];
+  documentationType: Set<string> = new Set();
   documentationTech: Set<string> = new Set();
   isLoading = false;
 
@@ -38,7 +38,7 @@ export class DocService {
     this.dbRefType.on('value', snap => {
       docTypes = snap.val();
       for (let i = 0; i < docTypes.length; i++) {
-        this.documentationType.push(docTypes[i]);
+        this.documentationType.add(docTypes[i]);
       }
     });
   }

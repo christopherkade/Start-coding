@@ -1,7 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {FirebaseApp} from 'angularfire2';
-import {UserService} from '../service/user.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,17 +13,7 @@ export class NavComponent {
   burger = true;
 
   constructor(private router: Router,
-              private firebase: FirebaseApp,
-              public userService: UserService) {}
-
-  /**
-   * Catches the log-out button click
-   * Signs-out of firebase & navigates back to /login
-   */
-  logout() {
-    this.userProfile = false;
-    this.firebase.auth().signOut();
-  }
+    public userService: UserService) { }
 
   userProfileClick() {
     this.userProfile = !this.userProfile;

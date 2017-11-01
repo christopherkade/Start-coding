@@ -29,6 +29,11 @@ export class ProfileComponent {
     }
   }
 
+  logOut() {
+    this.editProfile = false;
+    this.firebase.auth().signOut();
+  }
+
   /**
    * Called when the user edits his/her profile
    * Updates it via firebase with the new displayName value

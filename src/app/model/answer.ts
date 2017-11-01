@@ -1,6 +1,5 @@
 import { Question } from './question';
-import {Keywords} from './keyword';
-
+import { Keywords } from './keyword';
 
 // A question's answer, contains a value (text), a potential next question and
 // potential keywords

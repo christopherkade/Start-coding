@@ -14,6 +14,8 @@ export class QuizService {
   answerKeywords: Keywords[];
   documentation: Documentation[] = [];
 
+  isLoading = false;
+
   // Database references
   dbRef = this.firebase.database().ref().child('documentation');
 
@@ -21,7 +23,6 @@ export class QuizService {
     this.initQuestions();
   }
 
-  // TODO: Finish quiz
   initQuestions() {
     // QUESTION 4, 4.1, 4.2 (Web)
     const question4 = new Question('Great, using what tech primarily?', [
@@ -147,6 +148,8 @@ export class QuizService {
   processAnswers() {
     let documentation = null;
 
+    this.isLoading = true;
+
     // Get documentation from Firebase DB
     this.dbRef.on('value', snap => {
       documentation = snap.val();
@@ -174,6 +177,7 @@ export class QuizService {
           }
         }
       }
+      this.isLoading = false;
 
       // Reset our quiz
       this.initQuestions();

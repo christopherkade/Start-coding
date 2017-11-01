@@ -26,7 +26,7 @@ export class QuizComponent implements OnInit {
     } else {
       // If so, add the answer and go to the documentations page
       this.quizService.addAnswer(index);
-      this.router.navigate(['/documentation']);
+      this.router.navigate(['/doc']);
     }
   }
 }

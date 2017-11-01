@@ -29,7 +29,7 @@ export enum Keywords {
 
   //  MOBILE
   MOBILE = 'mobile',
-  ANDROID  = 'android',
+  ANDROID = 'android',
   IOS = 'ios',
   IONIC = 'ionic',
 

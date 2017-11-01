@@ -1,8 +1,10 @@
+<app-loading *ngIf="quizService.isLoading"></app-loading>
+
 <div class="doc">
   <!-- Show when we lack documentation to show -->
   <div class="hero">
     <div class="hero-body doc-body">
-      <div class="container" *ngIf="quizService.documentation.length == 0">
+      <div class="container" *ngIf="quizService.documentation.length == 0 && !quizService.isLoading">
         <h1 class="title">
           Oh no !
         </h1>

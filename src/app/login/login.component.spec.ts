@@ -10,9 +10,6 @@ import { environment } from 'environments/environment';
 import { UserService } from '../service/user.service';
 import { CookieService } from 'angular2-cookie/core';
 
-// TestBed creates an Angular testing module to be configured using
-// configureTestingModule to produce the right environment to test our class
-
 describe('LoginComponent', () => {
 
   let comp: LoginComponent;
@@ -20,8 +17,10 @@ describe('LoginComponent', () => {
   let de: DebugElement;
   let el: HTMLElement;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     // Declare the test module
+    // TestBed creates an Angular testing module to be configured using
+    // configureTestingModule to produce the right environment to test our class
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
@@ -39,11 +38,9 @@ describe('LoginComponent', () => {
 
     comp = fixture.componentInstance; // LoginComponent test instance
 
-    // query for the title <h1> by CSS element selector
     de = fixture.debugElement.query(By.css('button'));
     el = de.nativeElement;
   });
-
 
   it('should be disabled', () => {
     fixture.detectChanges();

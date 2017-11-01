@@ -14,12 +14,22 @@ export class DocService {
   // List of doc
   documentation: Documentation[] = [];
   documentationType: string[] = [];
+  documentationTech: Set<string> = new Set();
   isLoading = false;
 
   constructor(private firebase: FirebaseApp) { }
 
   resetDoc() {
     this.documentation = [];
+  }
+
+  // Fill up a set of available tech from our documentation
+  getDocTech() {
+    this.documentation.map(doc => {
+      for (let i = 0; i < doc.tech.length; i++) {
+        this.documentationTech.add(doc.tech[i]);
+      }
+    });
   }
 
   // Get documentation types
@@ -36,6 +46,7 @@ export class DocService {
   // Saves all documentation in our database
   getDoc() {
     let doc = null;
+    this.documentation = [];
     this.isLoading = true;
     // query our database
     this.dbRef.on('value', snap => {
@@ -49,6 +60,7 @@ export class DocService {
         }
       }
       this.isLoading = false;
+      this.getDocTech();
     });
   }
 

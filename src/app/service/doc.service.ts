@@ -4,13 +4,16 @@ import { Documentation } from '../model/documentation';
 import { Keywords } from '../model/keyword';
 import { QuizService } from './quiz.service';
 
+// Handles Documentation / Resource related matters
 @Injectable()
 export class DocService {
 
   // Database references
   dbRef = this.firebase.database().ref().child('documentation');
+  dbRefType = this.firebase.database().ref().child('documentation-type');
   // List of doc
   documentation: Documentation[] = [];
+  documentationType: string[] = [];
   isLoading = false;
 
   constructor(private firebase: FirebaseApp) { }
@@ -19,10 +22,33 @@ export class DocService {
     this.documentation = [];
   }
 
+  // Get documentation types
+  getDocTypes() {
+    let docTypes = null;
+    this.dbRefType.on('value', snap => {
+      docTypes = snap.val();
+      for (let i = 0; i < docTypes.length; i++) {
+        this.documentationType.push(docTypes[i]);
+      }
+    });
+  }
+
   // Saves all documentation in our database
   getDoc() {
+    let doc = null;
+    this.isLoading = true;
+    // query our database
     this.dbRef.on('value', snap => {
-      this.documentation = snap.val();
+      doc = snap.val();
+      // go through each doc
+      for (const key in doc) {
+        if (doc.hasOwnProperty(key)) {
+          // save it in our array
+          this.documentation.push(new Documentation(doc[key].URL, doc[key].level,
+            doc[key].name, doc[key].tech, doc[key].type, doc[key].description))
+        }
+      }
+      this.isLoading = false;
     });
   }
 

@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Documentation } from '../model/documentation';
+import { DocService } from '../service/doc.service';
 
 @Component({
   selector: 'app-doc-all',
   templateUrl: './doc-all.component.html',
   styleUrls: ['./doc-all.component.sass']
 })
-export class DocAllComponent {
-  constructor() { }
+export class DocAllComponent implements OnInit {
+  constructor(private docService: DocService) { }
+
+  selectedType = 'Type';
+  typeFilter = false;
+
+  ngOnInit() {
+    if (this.docService.documentation.length == 0) {
+      this.docService.getDoc();
+      this.docService.getDocTypes();
+    }
+  }
 }

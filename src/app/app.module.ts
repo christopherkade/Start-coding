@@ -24,6 +24,7 @@ import { QuizService } from './service/quiz.service';
 import { DocService } from './service/doc.service';
 import { DocAllComponent } from './doc-all/doc-all.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoadingComponent } from './loading/loading.component';
     ProfileComponent,
     DocComponent,
     DocAllComponent,
-    LoadingComponent
+    LoadingComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

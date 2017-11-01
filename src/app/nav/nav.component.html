@@ -5,6 +5,12 @@
     </a>
   </div>
 
+  <button class="button navbar-burger is-primary" (click)="burger = !burger" [ngClass]="burger ? '' : 'is-active'">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <div class="navbar-menu" [ngClass]="burger ? '' : 'is-active'">
     <div class="navbar-end">
       <a class="navbar-item" routerLink="/doc-all">
@@ -19,12 +25,6 @@
       </a>
     </div>
   </div>
-
-  <button class="button navbar-burger is-primary" (click)="burger = !burger" [ngClass]="burger ? '' : 'is-active'">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
 </nav>
 
 <app-profile *ngIf="userProfile && userService.user"></app-profile>

@@ -25,9 +25,10 @@ export class DocService {
 
   // Fill up a set of available tech from our documentation
   getDocTech() {
+    this.documentationTech.add('All')
     this.documentation.map(doc => {
       for (let i = 0; i < doc.tech.length; i++) {
-        this.documentationTech.add(doc.tech[i]);
+        this.documentationTech.add(doc.tech[i].charAt(0).toUpperCase() + doc.tech[i].slice(1));
       }
     });
   }
@@ -35,10 +36,12 @@ export class DocService {
   // Get documentation types
   getDocTypes() {
     let docTypes = null;
+    this.documentationType.add('All');
     this.dbRefType.on('value', snap => {
       docTypes = snap.val();
       for (let i = 0; i < docTypes.length; i++) {
-        this.documentationType.add(docTypes[i]);
+        // Set the first letter to upper case
+        this.documentationType.add(docTypes[i].charAt(0).toUpperCase() + docTypes[i].slice(1));
       }
     });
   }

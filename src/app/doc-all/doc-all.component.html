@@ -4,7 +4,7 @@
 
   <div class="filter level">
     <div class="level-left">
-      <h1>Filters</h1>
+      <h1 class="filter-name">Type</h1>
 
       <!-- Doc type filter -->
       <div class="dropdown dropdown-type" [ngClass]="{ 'is-active': typeFilter }">
@@ -25,8 +25,10 @@
         </div>
       </div>
 
+      <h1 class="filter-name">Tech</h1>
+
       <!-- Doc tech filter -->
-      <!-- <div class="dropdown dropdown-type" [ngClass]="{ 'is-active': techFilter }">
+      <div class="dropdown dropdown-type" [ngClass]="{ 'is-active': techFilter }">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" (click)="techFilter = !techFilter ">
         <span>{{selectedTech}}</span>
@@ -42,12 +44,12 @@
             </a>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
   <div class="columns is-multiline doc-columns">
-    <div class="column is-one-quarter" *ngFor="let doc of docService.documentation | filter: selectedType:selectedTech">
+    <div class="column is-one-quarter" *ngFor="let doc of docService.documentation | filter: { type: selectedType, tech: selectedTech }">
 
       <a target="_blank" href="{{doc.URL}}">
         <div class="card doc-card">

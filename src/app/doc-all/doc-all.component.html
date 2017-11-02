@@ -2,11 +2,11 @@
 
 <div class="doc-all" *ngIf="!docService.isLoading">
 
-  <div class="filter level">
+  <div class="filter level is-mobile">
     <div class="level-left">
-      <h1 class="filter-name">Type</h1>
 
       <!-- Doc type filter -->
+      <h1 class="filter-name">Type</h1>
       <div class="dropdown dropdown-type" [ngClass]="{ 'is-active': typeFilter }">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" (click)="typeFilter = !typeFilter ">
@@ -25,9 +25,8 @@
         </div>
       </div>
 
-      <h1 class="filter-name">Tech</h1>
-
       <!-- Doc tech filter -->
+      <h1 class="filter-name">Tech</h1>
       <div class="dropdown dropdown-type" [ngClass]="{ 'is-active': techFilter }">
         <div class="dropdown-trigger">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" (click)="techFilter = !techFilter ">

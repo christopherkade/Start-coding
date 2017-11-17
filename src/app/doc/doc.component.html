@@ -19,23 +19,20 @@
   <div class="container doc-container" *ngIf="docService.documentation.length > 0">
     <h1 class="title">We have found {{docService.documentation.length}} website<span *ngIf="docService.documentation.length > 1">s</span> that suit<span *ngIf="docService.documentation.length == 1">s</span>  your profile</h1>
 
-    <div class="card doc-card" *ngFor="let doc of docService.documentation">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="tag is-info is-large type-tag">{{doc.type}}</span> {{doc.name}}
-        </p>
-      </header>
-      <div class="card-content">
-        <div class="content">
-          {{doc.description}}
-        </div>
+    <a *ngFor="let doc of docService.documentation" href="{{doc.URL}}" target="_blank">
+      <div class="card doc-card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="tag is-info is-large type-tag">{{doc.type}}</span> {{doc.name}}
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            {{doc.description}}
+          </div>
+        </div>        
       </div>
-      <footer class="card-footer">
-        <a href="{{doc.URL}}" target="_blank" class="card-footer-item doc-link">
-          <i class="fa fa-globe" style="font-size: 25px;"></i>
-        </a>
-      </footer>
-    </div>
+    </a>
 
   </div>
 </div>

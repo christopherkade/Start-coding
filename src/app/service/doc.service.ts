@@ -107,6 +107,8 @@ export class DocService {
                   doc[documentation].level, doc[documentation].name,
                   keyword, doc[documentation].type, doc[documentation].description));
               }
+            }
+            if (val === 10) {
               this.isLoading = false;
             }
           });

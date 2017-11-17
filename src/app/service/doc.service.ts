@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import { Documentation } from '../model/documentation';
-import { Keywords } from '../model/keyword';
+import { Answer } from '../model/answer';
 import { QuizService } from './quiz.service';
 
 // Handles Documentation / Resource related matters
@@ -11,6 +11,8 @@ export class DocService {
   // Database references
   dbRef = this.firebase.database().ref().child('documentation');
   dbRefType = this.firebase.database().ref().child('documentation-type');
+  dbRefTech = this.firebase.database().ref().child('documentation-tech');
+
   // List of doc
   documentation: Documentation[] = [];
   documentationType: Set<string> = new Set();
@@ -25,10 +27,12 @@ export class DocService {
 
   // Fill up a set of available tech from our documentation
   getDocTech() {
+    let techType = null;
     this.documentationTech.add('All')
-    this.documentation.map(doc => {
-      for (let i = 0; i < doc.tech.length; i++) {
-        this.documentationTech.add(doc.tech[i].charAt(0).toUpperCase() + doc.tech[i].slice(1));
+    this.dbRefTech.on('value', snap => {
+      techType = snap.val();
+      for (let i = 0; i < techType.length; i++) {
+        this.documentationTech.add(techType[i].charAt(0).toUpperCase() + techType[i].slice(1));
       }
     });
   }
@@ -67,39 +71,48 @@ export class DocService {
     });
   }
 
-  // TODO: Drastically improve performance, O(N^3) is not acceptable
-  // TODO: Doc should rely on level
-  // Saves documentation based on keywords given as parameter
-  getDocByKeywords(keywords: Keywords[]) {
-    this.isLoading = true;
-    let doc = null;
-
-    this.dbRef.on('value', snap => {
-      doc = snap.val();
-
-      // For every resource
-      for (const key in doc) {
-        if (doc.hasOwnProperty(key)) {
-          const val = doc[key];
-
-          // For every tech type in this resource
-          for (const techKey in val.tech) {
-            if (val.tech.hasOwnProperty(techKey)) {
-
-              keywords.map(keyword => {
-                if (keyword.trim() === val.tech[techKey].trim()) {
-                  // It does, save the documentation
-                  this.documentation.push(new Documentation(doc[key].URL,
-                    doc[key].level, doc[key].name,
-                    val.tech[techKey], doc[key].type, doc[key].description));
-                }
-              });
-            }
-          }
-
-        }
-      }
-      this.isLoading = false;
+  getByType(type: string) {
+    this.dbRef.orderByChild('type').equalTo(type).on('value', snap => {
+      let doc = snap.val();
+      console.log(doc);
+      return doc;
     });
+  }
+
+  getByURL(url: string) {
+    this.dbRef.orderByChild('URL').equalTo(url).on('value', snap => {
+      let doc = snap.val();
+      console.log(doc);
+      return doc;
+    });
+  }
+
+  getByKeywords(answers: Answer[]) {
+    this.isLoading = true;
+    let techLen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    // Go through our answers
+    answers.map(answer => {
+
+      // Go through the keywords of each answer
+      answer.keywords.map(keyword => {
+        techLen.forEach(val => {
+
+          // Query the corresponding resource based on the keyword
+          this.dbRef.orderByChild('tech/' + val).equalTo(keyword).on('value', snap => {
+            let doc = snap.val();
+            if (doc) {
+              for (const documentation in doc) {
+                this.documentation.push(new Documentation(doc[documentation].URL,
+                  doc[documentation].level, doc[documentation].name,
+                  keyword, doc[documentation].type, doc[documentation].description));
+              }
+            }
+          });
+        });
+      });
+    });
+
+    this.isLoading = false;
   }
 }

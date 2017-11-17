@@ -3,7 +3,7 @@ import { Answer } from '../model/answer';
 import { Keywords } from '../model/keyword';
 import { Question } from '../model/question';
 import { FirebaseApp } from 'angularfire2';
-import { Documentation } from '../model/documentation';
+// import { Documentation } from '../model/documentation';
 import { DocService } from './doc.service';
 
 @Injectable()
@@ -12,12 +12,7 @@ export class QuizService {
   previousQuestions: Question[];
   currentQuestion: Question;
   answers: Answer[];
-  answerKeywords: Keywords[];
-  documentation: Documentation[] = [];
   isLoading = false;
-
-  // Database references
-  dbRef = this.firebase.database().ref().child('documentation');
 
   constructor(private firebase: FirebaseApp,
     private docService: DocService) {
@@ -99,8 +94,6 @@ export class QuizService {
     this.answers = [];
     // Set / Reset the previous questions
     this.previousQuestions = [];
-    // Set / Reset our keyword list
-    this.answerKeywords = [];
     // Reset our documentation
     this.docService.resetDoc();
   }
@@ -112,21 +105,13 @@ export class QuizService {
     // Add question to previous questions array
     this.previousQuestions.push(this.currentQuestion);
 
-    // Check if our answer has a keyword
-    if (answer.keywords.length > 0) {
-      // It does, add them to our array
-      answer.keywords.map(keyword => {
-        this.answerKeywords.push(keyword)
-      });
-    }
-
     // Check if it's the last question
     if (!this.isLastQuestion(answerIndex)) {
       // It is not, set the new one
       this.currentQuestion = this.currentQuestion.answers[answerIndex].nextQuestion;
     } else {
-      // It is, process the answers
-      this.processAnswers();
+      // It is, get the resources
+      this.docService.getByKeywords(this.answers);
     }
   }
 
@@ -145,10 +130,5 @@ export class QuizService {
       // Remove the last question
       this.previousQuestions.pop();
     }
-  }
-
-  // Call our answer processing method in our documentation service
-  processAnswers() {
-    this.docService.getDocByKeywords(this.answerKeywords);
   }
 }

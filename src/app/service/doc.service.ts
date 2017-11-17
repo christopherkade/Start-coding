@@ -88,8 +88,8 @@ export class DocService {
   }
 
   getByKeywords(answers: Answer[]) {
-    this.isLoading = true;
     let techLen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    this.isLoading = true;
 
     // Go through our answers
     answers.map(answer => {
@@ -107,12 +107,11 @@ export class DocService {
                   doc[documentation].level, doc[documentation].name,
                   keyword, doc[documentation].type, doc[documentation].description));
               }
+              this.isLoading = false;
             }
           });
         });
       });
     });
-
-    this.isLoading = false;
   }
 }

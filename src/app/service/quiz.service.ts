@@ -3,7 +3,6 @@ import { Answer } from '../model/answer';
 import { Keywords } from '../model/keyword';
 import { Question } from '../model/question';
 import { FirebaseApp } from 'angularfire2';
-// import { Documentation } from '../model/documentation';
 import { DocService } from './doc.service';
 
 @Injectable()

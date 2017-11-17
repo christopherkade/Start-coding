@@ -77,23 +77,26 @@ export class DocService {
     this.dbRef.on('value', snap => {
       doc = snap.val();
 
+      // For every resource
       for (const key in doc) {
         if (doc.hasOwnProperty(key)) {
           const val = doc[key];
 
-          // Loop through our documentation's tech keywords
-          for (const tkey in val.tech) {
-            if (val.tech.hasOwnProperty(tkey)) {
+          // For every tech type in this resource
+          for (const techKey in val.tech) {
+            if (val.tech.hasOwnProperty(techKey)) {
+
               keywords.map(keyword => {
-                if (keyword.trim() === val.tech[tkey].trim()) {
+                if (keyword.trim() === val.tech[techKey].trim()) {
                   // It does, save the documentation
                   this.documentation.push(new Documentation(doc[key].URL,
                     doc[key].level, doc[key].name,
-                    val.tech[tkey], doc[key].type, doc[key].description));
+                    val.tech[techKey], doc[key].type, doc[key].description));
                 }
               });
             }
           }
+
         }
       }
       this.isLoading = false;

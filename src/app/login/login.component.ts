@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {FirebaseApp} from 'angularfire2';
-import {UserService} from '../service/user.service';
-import {NotificationsService} from 'angular2-notifications/dist';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FirebaseApp } from 'angularfire2';
+import { UserService } from '../service/user.service';
+import { NotificationsService } from 'angular2-notifications/dist';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +17,10 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private firebase: FirebaseApp,
-              private notificationService: NotificationsService,
-              private userService: UserService) { }
+    private router: Router,
+    private firebase: FirebaseApp,
+    private notificationService: NotificationsService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     // Initialize our login form

@@ -32,7 +32,8 @@ export class QuizService {
     ]);
     const question4o1 = new Question('Great, using what tech primarily?', [
       new Answer('React', null, [Keywords.REACT]),
-      new Answer('Angular (2+, JS)', null, [Keywords.ANGULAR, Keywords.ANGULARJS]),
+      new Answer('Angular (2+)', null, [Keywords.ANGULAR]),
+      new Answer('AngularJS', null, [Keywords.ANGULARJS]),
       new Answer('VueJS', null, [Keywords.VUEJS]),
     ]);
     const question4o2 = new Question('On what would you rather focus your learnings?', [
@@ -42,7 +43,7 @@ export class QuizService {
 
     // QUESTION 3 (Web), 3.1 (Embedded), 3.2 (Software),
     const question3 = new Question('Backend, frontend, both?', [
-      new Answer('Back', question4, [Keywords.ASSEMBLY]),
+      new Answer('Back', question4, [Keywords.BACKEND]),
       new Answer('Front', question4o1, [Keywords.FRONTEND]),
       new Answer('Both !', question4o2),
     ]);
@@ -87,7 +88,7 @@ export class QuizService {
 
     // QUESTION 1
     const question1 = new Question('Have you ever coded?', [
-      new Answer('No', question2o1),
+      new Answer('No', question2o1, [Keywords.BEGINNER]),
       new Answer('A little', question2),
       new Answer('Yes', question2)
     ]);

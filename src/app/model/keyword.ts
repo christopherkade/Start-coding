@@ -38,5 +38,6 @@ export enum Keywords {
   OS = 'operating systems',
   HARDWARE = 'hardware',
   SOFTWARE = 'software',
-  EMBEDDED = 'embedded'
+  EMBEDDED = 'embedded',
+  BEGINNER = 'beginner'
 }
